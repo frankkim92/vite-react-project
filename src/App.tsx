@@ -1,35 +1,34 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+
 import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
+  let title = 'counter 계산기';
+
+  const counterFunction = (number: string) => {
+    if (number === 'plus') {
+      setCount(count + 1);
+    } else if (number === 'minus') {
+      setCount(count - 1);
+    } else if (number === 'reset') {
+      setCount(0);
+    }
+  };
 
   return (
-    <>
+    <div className='App'>
+      <h1 className='black-nav'>
+        <h4>{title} </h4>
+      </h1>
+
       <div>
-        <a href='https://vitejs.dev' target='_blank'>
-          <img src={viteLogo} className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://react.dev' target='_blank'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
+        <div>Counter : {count}</div>
+        <button onClick={() => counterFunction('plus')}>+</button>
+        <button onClick={() => counterFunction('minus')}>-</button>{' '}
+        <button onClick={() => counterFunction('reset')}>Reset</button>
       </div>
-      <h1>test Vite </h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is
-          {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   );
 }
 
